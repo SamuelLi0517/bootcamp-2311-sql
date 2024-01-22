@@ -346,10 +346,33 @@ having count(1) > 1;
 select distinct country_id, staff_name from empolyee;
 -- select country_id, staff_name from empolyee; -- error
 
+-- UNION & UNION ALL
+select e.id, e.staff_name, 'STAFF' as 'group'
+from employee e
+UNION ALL
+select c.id, c.cust_name, 'CUSTOMER' as 'group'
+from customer c;
 
+-- UNION: remove duplicated records, according to name only
+select e.staff_name
+from employee e
+UNION
+select c.cust_name as name
+from customer c;
 
+-- UNION: remove duplicated records, according to id and name 
+select e.id, e.staff_name as name
+from employee e
+UNION
+select c.id, c.cust_name as name
+from customer c;
 
-
+-- UNION ALL: shows all records from all result sets
+select e.id, e.staff_name as name
+from employee e
+UNION ALL
+select c.id, c.cust_name as name
+from customer c;
 
 
 
